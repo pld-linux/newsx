@@ -6,6 +6,7 @@ Release:	1
 License:	GPL
 Group:		Networking/News
 Source0:	ftp://ftp.kvalberg.com/%{name}-%{version}.tar.gz
+# Source0-md5:	446214ac6ef1f821dcd96106c6e689c5
 Patch0:		%{name}-make.patch
 URL:		http://www.kvaleberg.com/newsx/
 BuildRoot:	%{tmpdir}/%{name}-%{version}-root-%(id -u -n)
