@@ -1,25 +1,53 @@
-diff -ruN newsx-1.4.orig/configure.in newsx-1.4/configure.in
---- newsx-1.4.orig/configure.in	Tue Apr 20 16:49:01 1999
-+++ newsx-1.4/configure.in	Sun Dec  5 22:45:34 1999
-@@ -627,7 +627,7 @@
-     dnl installed manually, we have to resort to a local copy.
-     dnl BUG: Must really be fixed!
+--- newsx-1.6/configure.ac.orig	2003-05-18 12:57:24.000000000 +0200
++++ newsx-1.6/configure.ac	2003-11-01 17:49:44.632034248 +0100
+@@ -690,7 +690,6 @@
+ dnl Checks for library functions.
+ AC_FUNC_VPRINTF
+ AC_FUNC_MMAP
+-AC_CHECK_LIB(nsl, main)
+ AC_CHECK_LIB(inet, main)
+ AC_CHECK_LIB(socket, main)
+ AC_CHECK_LIB(gen, syslog)
+@@ -719,7 +718,7 @@
+     dnl Note that double inclusion of -lstorage seem to be required
+     dnl on some systems to get the QIO-functions
      dnl
--    AC_CHECK_HEADERS(storage.h)
-+    AC_CHECK_HEADERS(inn/storage.h)
+-    LIBS="$LIBS -linn -lstorage"
++    LIBS="$LIBS -linnhist -linn -lstorage"
+     AC_CHECK_LIB(storage, IsToken, HAVE_LIBSTORAGE=1)
  
-     CFLAGS="$CFLAGS_save"
-     LIBS="$LIBS_save"
-diff -ruN newsx-1.4.orig/src/Makefile.in newsx-1.4/src/Makefile.in
---- newsx-1.4.orig/src/Makefile.in	Sun Apr 25 09:08:56 1999
-+++ newsx-1.4/src/Makefile.in	Sun Dec  5 22:29:56 1999
-@@ -400,8 +400,7 @@
- check: check-am
- installcheck-am:
- installcheck: installcheck-am
--install-exec-am: install-binPROGRAMS install-binSCRIPTS \
--		install-exec-local
-+install-exec-am: install-binPROGRAMS install-binSCRIPTS
- install-exec: install-exec-am
+     dnl
+@@ -774,7 +773,7 @@
+     dnl Note that double inclusion of -lstorage seem to be required
+     dnl on some systems to get the QIO-functions
+     dnl
+-    MORELIBS2="-lstorage $MORELIBS2 -lstorage"
++    MORELIBS2="-lstorage -linnhist $MORELIBS2 -lstorage"
+     dnl BUG: remove...
+     dnl LIBS="-lstorage $LIBS -lstorage"
+     AC_DEFINE_UNQUOTED(HAVE_LIBSTORAGE, 1, [for INN 2.x: storage-API available?])
+--- newsx-1.6/src/Makefile.am.orig	2003-05-18 12:57:24.000000000 +0200
++++ newsx-1.6/src/Makefile.am	2003-11-01 18:12:59.022054744 +0100
+@@ -99,16 +99,16 @@
  
- install-data-am:
+ # Prepare a place for newsx in the news spool: 
+ install-exec-local:
+-	if test ! -d ${INHOSTS} ; then \
+-	    if test -d ${SPOOL}/in.hosts ; then \
++	if test ! -d $(DESTDIR)${INHOSTS} ; then \
++	    if test -d $(DESTDIR)${SPOOL}/in.hosts ; then \
+ 		echo The default location has changed, so we move ;\
+ 		echo the directory ${SPOOL}/in.hosts to ${INHOSTS} ;\
+-		mv ${SPOOL}/in.hosts ${INHOSTS} ;\
++		mv $(DESTDIR)${SPOOL}/in.hosts $(DESTDIR)${INHOSTS} ;\
+ 	    else \
+-		echo Creating directory ${INHOSTS} ;\
++		echo Creating directory $(DESTDIR)${INHOSTS} ;\
+ 		umask @INN_NEWSUMASK@ ;\
+-		mkdir ${INHOSTS} ;\
+-		chown ${NEWSUSER} ${INHOSTS} ;\
++		install -d $(DESTDIR)${INHOSTS} ;\
++		[ `id -u` -gt 0 ] || chown ${NEWSUSER} $(DESTDIR)${INHOSTS} ;\
+ 	    fi ;\
+ 	fi
+ 

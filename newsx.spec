@@ -1,15 +1,17 @@
 Summary:	NNTP news exchange utility
 Summary(pl):	Narzêdzie do wymiany newsów po NNTP
 Name:		newsx
-Version:	1.4
+Version:	1.6
 Release:	1
 License:	GPL
 Group:		Networking/News
 Source0:	ftp://ftp.kvaleberg.com/pub/%{name}-%{version}.tar.gz
-# Source0-md5:	446214ac6ef1f821dcd96106c6e689c5
+# Source0-md5:	ad9c76c53d5c7d21d86bec805fe8cd34
 Patch0:		%{name}-make.patch
 URL:		http://www.kvaleberg.com/newsx.html
 BuildRequires:	autoconf
+BuildRequires:	automake
+BuildRequires:	inn-devel
 Requires:	inn
 Provides:	news-sucker
 BuildRoot:	%{tmpdir}/%{name}-%{version}-root-%(id -u -n)
@@ -29,14 +31,30 @@ pobiera przychodz±ce artyku³y.
 %patch0 -p1
 
 %build
+%{__aclocal}
 %{__autoconf}
-%configure
-
+%{__autoheader}
+%{__automake}
+# `innconfval -s` inaccessible for builder - pass everything explicitly
+%configure \
+	HISTORY="/var/lib/news/history" \
+	INCOMING="/var/spool/news/incoming" \
+	LOCKS="/var/run/news" \
+	NEWSBIN="/usr/bin" \
+	NEWSFEEDS="/etc/news/newsfeeds" \
+	NEWSHOME="/usr" \
+	NEWSLIB="/usr/share/news" \
+	PATHETC="/etc/news" \
+	PATHSPOOL="/var/spool/news" \
+	--with-inhosts=/var/spool/news/inhosts \
+	--with-newsconfig=/usr/share/news/innshellvars \
+	--with-newsinclude=/usr/include/inn \
+	--with-newslib=/usr/lib
+	
 %{__make}
 
 %install
 rm -rf $RPM_BUILD_ROOT
-install -d $RPM_BUILD_ROOT/var/spool/news/inhosts
 
 %{__make} install \
 	DESTDIR=$RPM_BUILD_ROOT
@@ -49,4 +67,4 @@ rm -rf $RPM_BUILD_ROOT
 %doc AUTHORS ChangeLog FAQ NEWS README TODO
 %attr(755,root,root) %{_bindir}/*
 %attr(770,root,news) %dir /var/spool/news/inhosts
-%{_mandir}/*/*
+%{_mandir}/man[158]/*
