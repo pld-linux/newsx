@@ -1,0 +1,25 @@
+diff -ruN newsx-1.4.orig/configure.in newsx-1.4/configure.in
+--- newsx-1.4.orig/configure.in	Tue Apr 20 16:49:01 1999
++++ newsx-1.4/configure.in	Sun Dec  5 22:45:34 1999
+@@ -627,7 +627,7 @@
+     dnl installed manually, we have to resort to a local copy.
+     dnl BUG: Must really be fixed!
+     dnl
+-    AC_CHECK_HEADERS(storage.h)
++    AC_CHECK_HEADERS(inn/storage.h)
+ 
+     CFLAGS="$CFLAGS_save"
+     LIBS="$LIBS_save"
+diff -ruN newsx-1.4.orig/src/Makefile.in newsx-1.4/src/Makefile.in
+--- newsx-1.4.orig/src/Makefile.in	Sun Apr 25 09:08:56 1999
++++ newsx-1.4/src/Makefile.in	Sun Dec  5 22:29:56 1999
+@@ -400,8 +400,7 @@
+ check: check-am
+ installcheck-am:
+ installcheck: installcheck-am
+-install-exec-am: install-binPROGRAMS install-binSCRIPTS \
+-		install-exec-local
++install-exec-am: install-binPROGRAMS install-binSCRIPTS
+ install-exec: install-exec-am
+ 
+ install-data-am:
