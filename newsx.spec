@@ -7,7 +7,7 @@ Group:		Networking/News
 Source:		ftp://ftp.kvalberg.com/%{name}-%{version}.tar.gz
 Patch0:		%{name}-make.patch
 URL:		http://www.kvaleberg.com/newsx/
-BuildRoot:	/tmp/%{name}-%{version}-root
+BuildRoot:	%{tmpdir}/%{name}-%{version}-root-%(id -u -n)
 Requires:	inn
 Provides:	news-sucker
 
