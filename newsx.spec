@@ -41,5 +41,5 @@ rm -rf $RPM_BUILD_ROOT
 %defattr(644,root,root,755)
 %doc {FAQ,COPYING,NEWS,README}.gz
 %attr(755,root,root) %{_bindir}/*
-%attr(750,news,news) %dir /var/spool/news/inhosts
+%attr(770,root,news) %dir /var/spool/news/inhosts
 %{_mandir}/*/*
