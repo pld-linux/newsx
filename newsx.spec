@@ -27,7 +27,7 @@ CFLAGS="$RPM_OPT_FLAGS"; export CFLAGS
 LDFLAGS="-s"; export LDFLAGS
 %configure
 
-make
+%{__make}
 
 %install
 rm -rf $RPM_BUILD_ROOT
