@@ -38,14 +38,12 @@ install -d $RPM_BUILD_ROOT/var/spool/news/inhosts
 
 %{__make} install DESTDIR=$RPM_BUILD_ROOT
 
-gzip -9nf FAQ COPYING NEWS README
-
 %clean
 rm -rf $RPM_BUILD_ROOT
 
 %files
 %defattr(644,root,root,755)
-%doc {FAQ,COPYING,NEWS,README}.gz
+%doc FAQ COPYING NEWS README
 %attr(755,root,root) %{_bindir}/*
 %attr(770,root,news) %dir /var/spool/news/inhosts
 %{_mandir}/*/*
