@@ -9,6 +9,7 @@ Patch0:		%{name}-make.patch
 URL:		http://www.kvaleberg.com/newsx/
 BuildRoot:	/tmp/%{name}-%{version}-root
 Requires:	inn
+Provides:	news-sucker
 
 %description
 Newsx is an NNTP client that will connect to a remote NNTP server
