@@ -34,7 +34,7 @@ rm -rf $RPM_BUILD_ROOT
 
 install -d $RPM_BUILD_ROOT/var/spool/news/inhosts
 
-make install DESTDIR=$RPM_BUILD_ROOT
+%{__make} install DESTDIR=$RPM_BUILD_ROOT
 
 gzip -9nf FAQ COPYING NEWS README $RPM_BUILD_ROOT%{_mandir}/*/*
 
