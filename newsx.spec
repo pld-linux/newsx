@@ -5,8 +5,6 @@ Version:	1.4
 Release:	1
 License:	GPL
 Group:		Networking/News
-Group(de):	Netzwerkwesen/News
-Group(pl):	Sieciowe/News
 Source0:	ftp://ftp.kvalberg.com/%{name}-%{version}.tar.gz
 Patch0:		%{name}-make.patch
 URL:		http://www.kvaleberg.com/newsx/
