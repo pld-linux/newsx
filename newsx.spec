@@ -27,7 +27,7 @@ pobiera przychodz±ce artyku³y.
 %setup -q
 %patch0 -p1
 %build
-autoconf
+%{__autoconf}
 %configure
 
 %{__make}
