@@ -22,21 +22,17 @@ well as fetch incoming articles.
 %patch0 -p1
 %build
 autoconf
-
-CFLAGS="$RPM_OPT_FLAGS"; export CFLAGS
-LDFLAGS="-s"; export LDFLAGS
 %configure
 
 %{__make}
 
 %install
 rm -rf $RPM_BUILD_ROOT
-
 install -d $RPM_BUILD_ROOT/var/spool/news/inhosts
 
 %{__make} install DESTDIR=$RPM_BUILD_ROOT
 
-gzip -9nf FAQ COPYING NEWS README $RPM_BUILD_ROOT%{_mandir}/*/*
+gzip -9nf FAQ COPYING NEWS README
 
 %clean
 rm -rf $RPM_BUILD_ROOT
