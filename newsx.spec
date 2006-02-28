@@ -1,3 +1,5 @@
+# TODO
+# - lib64 broken?
 Summary:	NNTP news exchange utility
 Summary(pl):	Narzêdzie do wymiany newsów po NNTP
 Name:		newsx
@@ -49,8 +51,8 @@ pobiera przychodz±ce artyku³y.
 	--with-inhosts=/var/spool/news/inhosts \
 	--with-newsconfig=/usr/share/news/innshellvars \
 	--with-newsinclude=/usr/include/inn \
-	--with-newslib=/usr/lib
-	
+	--with-newslib=/usr/lib # FIXME lib64!
+
 %{__make}
 
 %install
