@@ -1,7 +1,7 @@
 # TODO
 # - lib64 broken?
 Summary:	NNTP news exchange utility
-Summary(pl):	Narzêdzie do wymiany newsów po NNTP
+Summary(pl.UTF-8):   NarzÄ™dzie do wymiany newsÃ³w po NNTP
 Name:		newsx
 Version:	1.6
 Release:	1
@@ -23,10 +23,10 @@ Newsx is an NNTP client that will connect to a remote NNTP server and
 post outgoing news articles batched by the news system (e.g. INN), as
 well as fetch incoming articles.
 
-%description -l pl
-Newsx jest klientem NNTP który ³±czy siê ze zdalnym serwerem i wysy³a
-wychodz±ce artyku³y zgromadzone przez system newsów (np. INN) oraz
-pobiera przychodz±ce artyku³y.
+%description -l pl.UTF-8
+Newsx jest klientem NNTP ktÃ³ry Å‚Ä…czy siÄ™ ze zdalnym serwerem i wysyÅ‚a
+wychodzÄ…ce artykuÅ‚y zgromadzone przez system newsÃ³w (np. INN) oraz
+pobiera przychodzÄ…ce artykuÅ‚y.
 
 %prep
 %setup -q
