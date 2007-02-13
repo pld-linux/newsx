@@ -1,7 +1,7 @@
 # TODO
 # - lib64 broken?
 Summary:	NNTP news exchange utility
-Summary(pl.UTF-8):   Narzędzie do wymiany newsów po NNTP
+Summary(pl.UTF-8):	Narzędzie do wymiany newsów po NNTP
 Name:		newsx
 Version:	1.6
 Release:	1
