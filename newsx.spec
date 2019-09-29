@@ -1,17 +1,19 @@
-# TODO
-# - lib64 broken?
 Summary:	NNTP news exchange utility
 Summary(pl.UTF-8):	Narzędzie do wymiany newsów po NNTP
 Name:		newsx
 Version:	1.6
-Release:	1
-License:	GPL
+Release:	2
+License:	GPL v2+
 Group:		Networking/News
-Source0:	ftp://ftp.kvaleberg.com/pub/%{name}-%{version}.tar.gz
+Source0:	ftp://ftp.tin.org/pub/news/utils/newsx/%{name}-%{version}.tar.gz
 # Source0-md5:	ad9c76c53d5c7d21d86bec805fe8cd34
 Patch0:		%{name}-make.patch
-URL:		http://www.kvaleberg.com/newsx.html
-BuildRequires:	autoconf
+Patch1:		%{name}-stack.patch
+Patch2:		%{name}-quotes.patch
+Patch3:		%{name}-automake.patch
+# no longer exists
+#URL:		http://www.kvaleberg.com/newsx.html
+BuildRequires:	autoconf >= 2.50
 BuildRequires:	automake
 BuildRequires:	inn-devel
 Requires:	inn
@@ -31,6 +33,9 @@ pobiera przychodzące artykuły.
 %prep
 %setup -q
 %patch0 -p1
+%patch1 -p1
+%patch2 -p1
+%patch3 -p1
 
 %build
 %{__aclocal}
@@ -51,7 +56,7 @@ pobiera przychodzące artykuły.
 	--with-inhosts=/var/spool/news/inhosts \
 	--with-newsconfig=/usr/share/news/innshellvars \
 	--with-newsinclude=/usr/include/inn \
-	--with-newslib=/usr/lib # FIXME lib64!
+	--with-newslib=%{_libdir}
 
 %{__make}
 
@@ -66,7 +71,11 @@ rm -rf $RPM_BUILD_ROOT
 
 %files
 %defattr(644,root,root,755)
-%doc AUTHORS ChangeLog FAQ NEWS README TODO
-%attr(755,root,root) %{_bindir}/*
+%doc AUTHORS FAQ NEWS README TODO
+%attr(755,root,root) %{_bindir}/newsq
+%attr(755,root,root) %{_bindir}/newsx
 %attr(770,root,news) %dir /var/spool/news/inhosts
-%{_mandir}/man[158]/*
+%{_mandir}/man1/newsq.1*
+%{_mandir}/man5/in.hosts.5*
+%{_mandir}/man5/newsx.conf.5*
+%{_mandir}/man8/newsx.8*

@@ -1,0 +1,24 @@
+diff -up newsx-1.6/src/config.c.~1~ newsx-1.6/src/config.c
+--- newsx-1.6/src/config.c.~1~	2003-05-18 12:57:24.000000000 +0200
++++ newsx-1.6/src/config.c	2008-07-14 09:19:11.000000000 +0200
+@@ -402,6 +402,9 @@ config_line(char *buf)
+ 		if (*q == '"') {
+ 		    is_quote = 1;
+ 		    ++q;
++		} else if (*q == '\'') {
++		    is_quote = 2;
++		    ++q;
+ 		}
+ 
+ 		/* BUG: what about ';'? */
+@@ -428,7 +431,9 @@ config_line(char *buf)
+ 			is_more = 1;
+ 			buf = q;
+ 			break;
+-		    } else if (is_quote && c=='"') {
++		    } else if (is_quote==1 && c=='"') {
++			break;
++		    } else if (is_quote==2 && c=='\'') {
+ 			break;
+ 		    } else {
+ 			*p++ = c;

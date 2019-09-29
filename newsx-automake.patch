@@ -1,0 +1,24 @@
+diff -up newsx-1.6/configure.ac.am-1.12 newsx-1.6/configure.ac
+--- newsx-1.6/configure.ac.am-1.12	2013-03-25 10:15:00.715659923 +0100
++++ newsx-1.6/configure.ac	2013-03-25 10:15:00.720659983 +0100
+@@ -646,7 +646,7 @@ dnl Checks for programs.
+ AC_PROG_MAKE_SET
+ AC_PROG_INSTALL
+ AC_PROG_RANLIB
+-AM_C_PROTOTYPES
++AC_C_PROTOTYPES
+ AC_PATH_PROG(SENDMAIL_PATH, sendmail, /usr/lib/sendmail)
+ AC_PATH_PROG(RNEWS_PATH, rnews, $RNEWS_PATH)
+ AC_PATH_PROG(INEWS_PATH, inews, $INEWS_PATH)
+diff -up newsx-1.6/Makefile.am.am-1.12 newsx-1.6/Makefile.am
+--- newsx-1.6/Makefile.am.am-1.12	2003-01-22 11:18:24.000000000 +0100
++++ newsx-1.6/Makefile.am	2013-03-25 10:15:57.348303095 +0100
+@@ -34,7 +34,7 @@
+ # Revision 1.24  1998/07/12 09:39:13  src
+ # newsx version 1.0
+ #
+-AUTOMAKE_OPTIONS = gnu ansi2knr
++AUTOMAKE_OPTIONS = gnu
+ 
+ SUBDIRS = lib dbz src doc more test
+ 
