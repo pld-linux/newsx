@@ -2,7 +2,7 @@ Summary:	NNTP news exchange utility
 Summary(pl.UTF-8):	Narzędzie do wymiany newsów po NNTP
 Name:		newsx
 Version:	1.6
-Release:	2
+Release:	3
 License:	GPL v2+
 Group:		Networking/News
 Source0:	ftp://ftp.tin.org/pub/news/utils/newsx/%{name}-%{version}.tar.gz
@@ -42,6 +42,8 @@ pobiera przychodzące artykuły.
 %{__autoconf}
 %{__autoheader}
 %{__automake}
+# 1.6 sources not ready for -fno-common
+CFLAGS="%{rpmcflags} -fcommon"
 # `innconfval -s` inaccessible for builder - pass everything explicitly
 %configure \
 	HISTORY="/var/lib/news/history" \
