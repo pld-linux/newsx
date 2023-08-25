@@ -2,7 +2,7 @@ Summary:	NNTP news exchange utility
 Summary(pl.UTF-8):	Narzędzie do wymiany newsów po NNTP
 Name:		newsx
 Version:	1.6
-Release:	3
+Release:	4
 License:	GPL v2+
 Group:		Networking/News
 Source0:	ftp://ftp.tin.org/pub/news/utils/newsx/%{name}-%{version}.tar.gz
